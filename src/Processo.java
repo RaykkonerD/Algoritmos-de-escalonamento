@@ -13,6 +13,11 @@ public class Processo {
         this.tempoDeInicio = tempoDeChegada;
     }
 
+    public Processo(String nome, int tempoDeServico) {
+        this.nome = nome;
+        this.tempoDeServico = tempoDeServico;
+    }
+
     public String getNome() {
         return nome;
     }
