@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -44,6 +43,7 @@ public class Main {
     private static void fifo() {
         Menu menu = new Menu(false);
         FilaDeProntos filaDeProntos = menu.execute();
+        filaDeProntos.getListaDeProcessos().sort((p1, p2) -> Integer.compare(p1.getTempoDeChegada(), p2.getTempoDeChegada()));
         Apresentacao.execute(filaDeProntos.getListaDeProcessos(), filaDeProntos.getTempoDeTrocaDeContexto());
     }
 
