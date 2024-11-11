@@ -53,6 +53,7 @@ public class Main {
     private static void rr() {
         Menu menu = new Menu(false);
         FilaDeProntos filaDeProntos = menu.execute();
+        filaDeProntos.getListaDeProcessos().sort((p1, p2) -> Integer.compare(p1.getTempoDeChegada(), p2.getTempoDeChegada()));
 
         Scanner entrada = new Scanner(System.in);
         System.out.println("\n");
@@ -72,7 +73,7 @@ public class Main {
                 }
             }
             totalDeTempoAExecutar = filaDeProntos.getListaDeProcessos().stream().map(Processo::getTempoDeServico).reduce(Integer::sum).get();
-        };
+        }
         Apresentacao.execute(filaDeExecucao, filaDeProntos.getTempoDeTrocaDeContexto());
     }
 

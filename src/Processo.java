@@ -3,14 +3,15 @@ public class Processo {
     private int tempoDeServico;
     private int tempoDeChegada;
     private int prioridade;
-    private int tempoDeInicio;
+    private int tempoDeEspera;
+    private int tempoDeRetorno;
 
     public Processo(String nome, int tempoDeServico, int tempoDeChegada, int prioridade) {
         this.nome = nome;
         this.tempoDeServico = tempoDeServico;
         this.tempoDeChegada = tempoDeChegada;
         this.prioridade = prioridade;
-        this.tempoDeInicio = tempoDeChegada;
+        this.tempoDeEspera = tempoDeChegada;
     }
 
     public Processo(String nome, int tempoDeServico) {
@@ -50,11 +51,19 @@ public class Processo {
         this.prioridade = prioridade;
     }
 
-    public int getTempoDeInicio() {
-        return tempoDeInicio;
+    public int getTempoDeEspera() {
+        return tempoDeEspera;
     }
 
-    public void setTempoDeInicio(int tempoDeInicio) {
-        this.tempoDeInicio = tempoDeInicio;
+    public void setTempoDeEspera(int tempoDeEspera) {
+        this.tempoDeEspera = tempoDeEspera;
+    }
+
+    public int getTempoDeRetorno() {
+        return tempoDeRetorno;
+    }
+
+    public void setTempoDeRetorno(int tempoDeRetorno) {
+        this.tempoDeRetorno = tempoDeRetorno;
     }
 }
