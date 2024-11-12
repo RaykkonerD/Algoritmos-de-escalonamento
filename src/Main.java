@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -48,6 +49,10 @@ public class Main {
     }
 
     private static void sjf() {
+        Menu menu = new Menu(false);
+        FilaDeProntos filaDeProntos = menu.execute();
+        filaDeProntos.getListaDeProcessos().sort((p1, p2) -> Integer.compare(p1.getTempoDeServico(), p2.getTempoDeServico()));
+        Apresentacao.execute(filaDeProntos.getListaDeProcessos(), filaDeProntos.getTempoDeTrocaDeContexto());
     }
 
     private static void rr() {
@@ -78,8 +83,27 @@ public class Main {
     }
 
     private static void prioridade() {
+        Menu menu = new Menu(true);
+        FilaDeProntos filaDeProntos = menu.execute();
+        filaDeProntos.getListaDeProcessos().sort((p1, p2) -> Integer.compare(p1.getPrioridade(), p2.getPrioridade()));
+        Apresentacao.execute(filaDeProntos.getListaDeProcessos(), filaDeProntos.getTempoDeTrocaDeContexto());
     }
 
     private static void lot() {
+        Menu menu = new Menu(true);
+        FilaDeProntos filaDeProntos = menu.execute();
+        Random random = new Random();
+
+        ArrayList<Processo> listaDeSorteados = new ArrayList<>();
+
+        while (filaDeProntos.size() != 0) {
+            int numeroAleatorio = random.nextInt(filaDeProntos.size());
+            Processo processoSorteado = filaDeProntos.getListaDeProcessos().remove(numeroAleatorio);
+            listaDeSorteados.add(processoSorteado);
+        }
+
+        filaDeProntos.getListaDeProcessos().sort((p1, p2) -> Integer.compare(p1.getPrioridade(), p2.getPrioridade()));
+        Apresentacao.execute(listaDeSorteados, filaDeProntos.getTempoDeTrocaDeContexto());
+
     }
 }

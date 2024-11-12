@@ -19,8 +19,8 @@ public class Menu {
             System.out.println();
         }
 
-        System.out.println("1 - Adiciionar processo");
-        System.out.println("2 - Sair");
+        System.out.println("1 - Adicionar processo");
+        System.out.println("2 - Continuar");
         System.out.print("Opção: ");
         int opcao = entrada.nextInt();
         if (opcao != 1) {
@@ -43,9 +43,12 @@ public class Menu {
         if(filaDeProntos.temPrioridade()) {
             System.out.print("Prioridade: ");
             prioridade = entrada.nextInt();
+
+            filaDeProntos.addProceesso(new Processo(nome, tempoDeServico, tempoDeChegada, prioridade));
+            return execute();
         }
 
-        filaDeProntos.addProceesso(new Processo(nome, tempoDeServico, tempoDeChegada, prioridade));
+        filaDeProntos.addProceesso(new Processo(nome, tempoDeServico, tempoDeChegada));
         return execute();
     }
 }

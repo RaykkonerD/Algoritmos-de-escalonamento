@@ -10,6 +10,17 @@ public class FilaDeProntos {
     public FilaDeProntos(boolean temPrioridade) {
         this.listaDeProcessos = new ArrayList<>();
         this.temPrioridade = temPrioridade;
+
+        //Mock
+        this.listaDeProcessos.add(new Processo("Chrome", 4, 0, 5));
+        this.listaDeProcessos.add(new Processo("Photoshop", 10, 0, 4));
+        this.listaDeProcessos.add(new Processo("Excel", 3, 0, 3));
+        this.listaDeProcessos.add(new Processo("Discord", 7, 0, 2));
+        this.listaDeProcessos.add(new Processo("Notepad", 1, 0, 8));
+        this.listaDeProcessos.add(new Processo("Visual Studio", 12, 0, 6));
+        this.listaDeProcessos.add(new Processo("Terminal", 2, 0, 7));
+        this.listaDeProcessos.add(new Processo("File Explorer", 6, 0, 1));
+
     }
 
     public List<Processo> getListaDeProcessos() {
