@@ -12,14 +12,19 @@ public class FilaDeProntos {
         this.temPrioridade = temPrioridade;
 
         //Mock
-        this.listaDeProcessos.add(new Processo("Chrome", 4, 0, 5));
-        this.listaDeProcessos.add(new Processo("Photoshop", 10, 0, 4));
-        this.listaDeProcessos.add(new Processo("Excel", 3, 0, 3));
-        this.listaDeProcessos.add(new Processo("Discord", 7, 0, 2));
-        this.listaDeProcessos.add(new Processo("Notepad", 1, 0, 8));
-        this.listaDeProcessos.add(new Processo("Visual Studio", 12, 0, 6));
-        this.listaDeProcessos.add(new Processo("Terminal", 2, 0, 7));
-        this.listaDeProcessos.add(new Processo("File Explorer", 6, 0, 1));
+        this.listaDeProcessos.add(new Processo("P1", 8, 0, 1));
+        this.listaDeProcessos.add(new Processo("P2", 12, 2, 1));
+        this.listaDeProcessos.add(new Processo("P3", 20, 9, 1));
+        this.listaDeProcessos.add(new Processo("P4", 6, 11, 1));
+        this.listaDeProcessos.add(new Processo("P5", 14, 12, 1));
+//        this.listaDeProcessos.add(new Processo("Chrome", 4, 0, 5));
+//        this.listaDeProcessos.add(new Processo("Photoshop", 10, 0, 4));
+//        this.listaDeProcessos.add(new Processo("Excel", 3, 0, 3));
+//        this.listaDeProcessos.add(new Processo("Discord", 7, 0, 2));
+//        this.listaDeProcessos.add(new Processo("Notepad", 1, 0, 8));
+//        this.listaDeProcessos.add(new Processo("Visual Studio", 12, 0, 6));
+//        this.listaDeProcessos.add(new Processo("Terminal", 2, 0, 7));
+//        this.listaDeProcessos.add(new Processo("File Explorer", 6, 0, 1));
 
     }
 

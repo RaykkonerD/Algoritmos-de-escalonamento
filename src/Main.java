@@ -61,7 +61,6 @@ public class Main {
         filaDeProntos.getListaDeProcessos().sort((p1, p2) -> Integer.compare(p1.getTempoDeChegada(), p2.getTempoDeChegada()));
 
         Scanner entrada = new Scanner(System.in);
-        System.out.println("\n");
         System.out.print("Fatia de tempo: ");
         int fatiaDeTempo = entrada.nextInt();
 
@@ -71,7 +70,7 @@ public class Main {
             for(Processo p : filaDeProntos.getListaDeProcessos()) {
                 if (p.getTempoDeServico() > 0) {
                     int tempoRodado = Math.min(fatiaDeTempo, p.getTempoDeServico());
-                    Processo processoFatiado = new Processo(p.getNome(), tempoRodado);
+                    Processo processoFatiado = new Processo(p.getNome(), tempoRodado, p.getTempoDeChegada());
                     filaDeExecucao.add(processoFatiado);
                     p.setTempoDeServico(p.getTempoDeServico() - tempoRodado);
                     System.out.println(p.getNome() + " " + p.getTempoDeServico());

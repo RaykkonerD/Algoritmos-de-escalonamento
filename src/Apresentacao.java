@@ -37,10 +37,9 @@ public class Apresentacao {
             System.out.print(tempo);
             processoAtual.setTempoDeRetorno(tempo - processoAtual.getTempoDeChegada());
 
-            if(processosCompletos.stream().anyMatch(p -> Objects.equals(p.getNome(), processoAtual.getNome()))){
+            if(processosCompletos.stream().anyMatch(p -> p.getNome().equals(processoAtual.getNome()))){
                 Processo processoExistente = processosCompletos.stream().filter(p -> Objects.equals(p.getNome(), processoAtual.getNome())).findFirst().get();
-                processoExistente.setTempoDeEspera(tempo);
-                processoExistente.setTempoDeRetorno(tempo + processoAtual.getTempoDeServico());
+                processoExistente.setTempoDeRetorno(tempo - processoExistente.getTempoDeChegada());
             } else {
                 processosCompletos.add(processoAtual);
             }
