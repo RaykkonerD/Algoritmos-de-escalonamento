@@ -52,7 +52,23 @@ public class Main {
         Menu menu = new Menu(false);
         FilaDeProntos filaDeProntos = menu.execute();
         filaDeProntos.getListaDeProcessos().sort((p1, p2) -> Integer.compare(p1.getTempoDeServico(), p2.getTempoDeServico()));
-        Apresentacao.execute(filaDeProntos.getListaDeProcessos(), filaDeProntos.getTempoDeTrocaDeContexto());
+
+        List<Processo> processosProntos = filaDeProntos.getListaDeProcessos();
+        ArrayList<Processo> processosEmOrdemDeExecucao = new ArrayList<>();
+        int utCorrent = 0;
+
+        while (!processosProntos.isEmpty()) {
+            for (int i = 0; i < processosProntos.size(); i++) {
+                if(processosProntos.get(i).getTempoDeChegada() <= utCorrent) {
+                    Processo processo = processosProntos.remove(i);
+                    processosEmOrdemDeExecucao.add(processo);
+                    utCorrent += processo.getTempoDeServico();
+                    break;
+                }
+            }
+
+        }
+        Apresentacao.execute(processosEmOrdemDeExecucao, filaDeProntos.getTempoDeTrocaDeContexto());
     }
 
     private static void rr() {

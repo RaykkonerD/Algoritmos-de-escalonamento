@@ -16,7 +16,13 @@ public class FilaDeProntos {
         this.listaDeProcessos.add(new Processo("P2", 12, 2, 1));
         this.listaDeProcessos.add(new Processo("P3", 20, 9, 1));
         this.listaDeProcessos.add(new Processo("P4", 6, 11, 1));
-        this.listaDeProcessos.add(new Processo("P5", 14, 12, 1));
+        this.listaDeProcessos.add(new Processo("P5", 14, 11, 1));
+//        this.listaDeProcessos.add(new Processo("P1", 9, 0, 1));
+//        this.listaDeProcessos.add(new Processo("P2", 6, 3, 1));
+//        this.listaDeProcessos.add(new Processo("P3", 3, 7, 1));
+
+
+
 //        this.listaDeProcessos.add(new Processo("Chrome", 4, 0, 5));
 //        this.listaDeProcessos.add(new Processo("Photoshop", 10, 0, 4));
 //        this.listaDeProcessos.add(new Processo("Excel", 3, 0, 3));
