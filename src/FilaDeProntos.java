@@ -13,9 +13,9 @@ public class FilaDeProntos {
 
         //Mock
         this.listaDeProcessos.add(new Processo("P1", 8, 0, 1));
-        this.listaDeProcessos.add(new Processo("P2", 12, 2, 1));
-        this.listaDeProcessos.add(new Processo("P3", 20, 9, 1));
-        this.listaDeProcessos.add(new Processo("P4", 6, 11, 1));
+        this.listaDeProcessos.add(new Processo("P2", 12, 2, 4));
+        this.listaDeProcessos.add(new Processo("P3", 20, 4, 3));
+        this.listaDeProcessos.add(new Processo("P4", 6, 8, 2));
         this.listaDeProcessos.add(new Processo("P5", 14, 11, 1));
 //        this.listaDeProcessos.add(new Processo("P1", 9, 0, 1));
 //        this.listaDeProcessos.add(new Processo("P2", 6, 3, 1));

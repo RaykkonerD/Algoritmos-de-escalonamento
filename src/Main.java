@@ -1,14 +1,11 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         int opcao = 0;
         while (opcao != 6) {
-            switch (opcao){
+            switch (opcao) {
                 case 1:
                     fifo();
                     break;
@@ -59,7 +56,7 @@ public class Main {
 
         while (!processosProntos.isEmpty()) {
             for (int i = 0; i < processosProntos.size(); i++) {
-                if(processosProntos.get(i).getTempoDeChegada() <= utCorrent) {
+                if (processosProntos.get(i).getTempoDeChegada() <= utCorrent) {
                     Processo processo = processosProntos.remove(i);
                     processosEmOrdemDeExecucao.add(processo);
                     utCorrent += processo.getTempoDeServico();
@@ -83,7 +80,7 @@ public class Main {
         List<Processo> filaDeExecucao = new ArrayList<>();
         int totalDeTempoAExecutar = filaDeProntos.getListaDeProcessos().stream().map(Processo::getTempoDeServico).reduce(Integer::sum).get();
         while (totalDeTempoAExecutar > 0) {
-            for(Processo p : filaDeProntos.getListaDeProcessos()) {
+            for (Processo p : filaDeProntos.getListaDeProcessos()) {
                 if (p.getTempoDeServico() > 0) {
                     int tempoRodado = Math.min(fatiaDeTempo, p.getTempoDeServico());
                     Processo processoFatiado = new Processo(p.getNome(), tempoRodado, p.getTempoDeChegada());
@@ -100,8 +97,10 @@ public class Main {
     private static void prioridade() {
         Menu menu = new Menu(true);
         FilaDeProntos filaDeProntos = menu.execute();
-        filaDeProntos.getListaDeProcessos().sort((p1, p2) -> Integer.compare(p1.getPrioridade(), p2.getPrioridade()));
-        Apresentacao.execute(filaDeProntos.getListaDeProcessos(), filaDeProntos.getTempoDeTrocaDeContexto());
+        List<Processo> listaDeProcessos = filaDeProntos.getListaDeProcessos();
+        listaDeProcessos.sort(Comparator.comparingInt(Processo::getTempoDeChegada));
+        ordenaPorPrioridade(listaDeProcessos);
+        Apresentacao.execute(listaDeProcessos, filaDeProntos.getTempoDeTrocaDeContexto());
     }
 
     private static void lot() {
@@ -119,6 +118,24 @@ public class Main {
 
         filaDeProntos.getListaDeProcessos().sort((p1, p2) -> Integer.compare(p1.getPrioridade(), p2.getPrioridade()));
         Apresentacao.execute(listaDeSorteados, filaDeProntos.getTempoDeTrocaDeContexto());
+    }
 
+    private static void ordenaPorPrioridade(List<Processo> listaDeProcessos){
+        int utCorrent = 0;
+
+        for (int i = 0; i < listaDeProcessos.size(); ) {
+            List<Processo> aExecutarEmSeguida = new ArrayList<>();
+            aExecutarEmSeguida.add(listaDeProcessos.get(i));
+            int j = i + 1;
+            while (j < listaDeProcessos.size() && listaDeProcessos.get(j).getTempoDeChegada() <= utCorrent) {
+                aExecutarEmSeguida.add(listaDeProcessos.get(j));
+                j++;
+            }
+            utCorrent += listaDeProcessos.get(i).getTempoDeServico();
+            aExecutarEmSeguida.sort(Comparator.comparingInt(Processo::getPrioridade));
+            listaDeProcessos.removeAll(aExecutarEmSeguida);
+            listaDeProcessos.addAll(i, aExecutarEmSeguida);
+            i = j;
+        }
     }
 }
