@@ -104,20 +104,18 @@ public class Main {
     }
 
     private static void lot() {
-        Menu menu = new Menu(true);
+        Menu menu = new Menu(false);
         FilaDeProntos filaDeProntos = menu.execute();
-        Random random = new Random();
-
-        ArrayList<Processo> listaDeSorteados = new ArrayList<>();
-
-        while (filaDeProntos.size() != 0) {
-            int numeroAleatorio = random.nextInt(filaDeProntos.size());
-            Processo processoSorteado = filaDeProntos.getListaDeProcessos().remove(numeroAleatorio);
-            listaDeSorteados.add(processoSorteado);
+        List<Processo> listaDeProcessos = filaDeProntos.getListaDeProcessos();
+        listaDeProcessos.sort(Comparator.comparingInt(Processo::getTempoDeChegada));
+        
+        for(Processo processo : listaDeProcessos){
+          Random prioridadeAleatoria = new Random(listaDeProcessos.size());
+          processo.setPrioridade(prioridadeAleatoria.nextInt());
         }
 
-        filaDeProntos.getListaDeProcessos().sort((p1, p2) -> Integer.compare(p1.getPrioridade(), p2.getPrioridade()));
-        Apresentacao.execute(listaDeSorteados, filaDeProntos.getTempoDeTrocaDeContexto());
+        ordenaPorPrioridade(listaDeProcessos);
+        Apresentacao.execute(listaDeProcessos, filaDeProntos.getTempoDeTrocaDeContexto());
     }
 
     private static void ordenaPorPrioridade(List<Processo> listaDeProcessos){
