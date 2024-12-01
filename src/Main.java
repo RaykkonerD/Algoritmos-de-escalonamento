@@ -108,10 +108,10 @@ public class Main {
         FilaDeProntos filaDeProntos = menu.execute();
         List<Processo> listaDeProcessos = filaDeProntos.getListaDeProcessos();
         listaDeProcessos.sort(Comparator.comparingInt(Processo::getTempoDeChegada));
+        Random prioridadeAleatoria = new Random();
         
         for(Processo processo : listaDeProcessos){
-          Random prioridadeAleatoria = new Random(listaDeProcessos.size());
-          processo.setPrioridade(prioridadeAleatoria.nextInt());
+            processo.setPrioridade(prioridadeAleatoria.nextInt(listaDeProcessos.size()));
         }
 
         ordenaPorPrioridade(listaDeProcessos);
